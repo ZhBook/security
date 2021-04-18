@@ -16,5 +16,8 @@ import org.springframework.stereotype.Component;
 public interface UserMapper {
     @Select("select * from user where username = #{username}")
     User getUserInfoByUsername(String username);
+
+    @Select("select role from user where username= #{username}")
+    String getUserRoleByUsername(String username);
 }
 
