@@ -11,5 +11,5 @@ import com.example.security.pojo.User;
 public interface UserService {
     User getUser(String username);
     String getRole(String username);
-
+    int insertUser(User user);
 }

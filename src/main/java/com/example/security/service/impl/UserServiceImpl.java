@@ -4,6 +4,7 @@ import com.example.security.mapper.UserMapper;
 import com.example.security.pojo.User;
 import com.example.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public User getUser(String username) {
@@ -25,6 +28,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getRole(String username) {
         return userMapper.getUserRoleByUsername(username);
+    }
+
+    @Override
+    public int insertUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userMapper.insertUser(user);
     }
 
 }

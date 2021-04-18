@@ -4,9 +4,7 @@ import com.example.security.pojo.User;
 import com.example.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * FileName:com.example.security.controller
@@ -34,5 +32,10 @@ public class HelloController {
     @GetMapping("/admin")
     public String admin(){
         return "admin角色访问";
+    }
+
+    @PostMapping("/add-user")
+    public int addUser(@RequestBody User user){
+        return userService.insertUser(user);
     }
 }

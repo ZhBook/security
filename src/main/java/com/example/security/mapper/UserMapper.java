@@ -1,6 +1,7 @@
 package com.example.security.mapper;
 
 import com.example.security.pojo.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Component;
@@ -19,5 +20,8 @@ public interface UserMapper {
 
     @Select("select role from user where username= #{username}")
     String getUserRoleByUsername(String username);
+
+    @Insert("insert into user(username,password,role) value (#{username},#{password},#{role})")
+    int insertUser(User user);
 }
 

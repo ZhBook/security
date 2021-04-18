@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class MyUserDatailService implements UserDetailsService {
+public class MyUserDetailService implements UserDetailsService {
     @Autowired
     private UserService userService;
     /**
@@ -37,7 +37,7 @@ public class MyUserDatailService implements UserDetailsService {
         return new User(
                 user.getUsername(),
                 // 数据库密码已加密，不用再加密
-                passwordEncoder.encode(user.getPassword()),
+                user.getPassword(),
                 authorities
         );
     }
